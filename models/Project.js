@@ -44,21 +44,27 @@ export const create = async (name, url, desc, select, id) => {
     }
 }
 
-export const update = async (id, data) => {
+export const update = async (name, url, desc, select, id) => {
 
     try {
 
-        const updateUser = await prisma.user.update({
+        const updateUser = await Prisma.project.update({
             where: {
                 id: id,
             },
             data: {
-                data
+                name: name,
+                active: select,
+                img_path: url,
+                userId: id,
+                description: desc,
             },
         })
+        return true;
 
     } catch (error) {
-
+        console.log('ERROR EDITANDO: ' + error);
+        return false;
     }
 
 }
@@ -72,9 +78,11 @@ export const remove = async (id) => {
                 id: id,
             },
         })
+        return true;
 
     } catch (error) {
-
+        console.log('ERROR EDITANDO: ' + error);
+        return false;
     }
 
 }

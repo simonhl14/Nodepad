@@ -1,62 +1,70 @@
-  <!--Editar proyecto-->
-<div class="flex items-center p-10 mt-0 mb-8 inline-grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4 w-full">
-<div></div>
-  <form action="/editProject" method="POST" id="form_editProject">
-    <!-- Name input -->
-    <div class="mb-6">
-      <input
-          type="text"
-          class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          id="name"
-          name="name"
-          placeholder="Name"
-          required
-        />
+<!--Editar proyecto-->
+<% if(!Project) {%>
+  <p>Este projecto no existe</p>
+<% } else {%>
+  <div class="flex items-center p-10 mt-0 mb-8 inline-grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4 w-full">
+    <div></div>
+      <form action="/dashboard/editProject/<%= Project.id %>" method="POST" id="form_editProject">
+        <!-- Name input -->
+        <div class="mb-6">
+          <input
+              type="text"
+              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="name"
+              name="name"
+              placeholder="Name"
+              value="<%= Project.name %>"
+              required
+            />
+        </div>
+        <!-- Url input -->
+        <div class="mb-6">
+          <input
+            type="url"
+            class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            id="url"
+            name="url"
+            value="<%= Project.img_path %>"
+            placeholder="URL address"
+            required
+          />
+        </div>
+        <!-- State input -->
+        <div class="mb-6">
+          <select
+            class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            id="select"
+            name="select"
+            value="<%= Project.active %>"
+            required
+          >
+          
+          <option <% if(Project.active == 0) {%> selected <% }%> value="0">Por iniciar</option>
+          <option <% if(Project.active == 1) {%> selected <% }%> value="1">En curso</option>
+          <option <% if(Project.active == 2) {%> selected <% }%> value="2">Finalizado</option>
+          </select>
+        </div>
+        <!-- Description input -->
+        <div class="mb-6">
+          <textarea
+            class="form-control max-h-72 block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            id="description"
+            name="description"
+            maxlength="255"
+            required
+          > <%= Project.description %> </textarea>
+          <p class="text-gray-400 text-right"> max 255 caracteres </p>
+        </div>
+    
+        <div class="text-center ">
+          <button
+            type="submit"
+            class="inline-block w-full px-7 py-3 bg-sky-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            Editar proyecto
+          </button>
+        </div>
+      </form>
+      <div></div>
     </div>
-    <!-- Url input -->
-    <div class="mb-6">
-      <input
-        type="url"
-        class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        id="url"
-        name="url"
-        placeholder="URL address"
-        required
-      />
-    </div>
-    <!-- State input -->
-    <div class="mb-6">
-      <select
-        class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        id="select"
-        name="select"
-        required
-      >
-      <option value="0">Por iniciar</option>
-      <option value="1">En curso</option>
-      <option value="2">Finalizado</option>
-      </select>
-    </div>
-    <!-- Description input -->
-    <div class="mb-6">
-      <textarea
-        class="form-control max-h-72 block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        id="description"
-        name="description"
-        maxlength="255"
-        required
-      > </textarea>
-      <p class="text-gray-400 text-right"> max 255 caracteres </p>
-    </div>
-
-    <div class="text-center ">
-      <button
-        type="submit"
-        class="inline-block w-full px-7 py-3 bg-sky-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-800 active:shadow-lg transition duration-150 ease-in-out"
-      >
-        Editar proyecto
-      </button>
-    </div>
-  </form>
-  <div></div>
-</div>
+<% }%>

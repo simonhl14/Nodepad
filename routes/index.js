@@ -4,7 +4,9 @@ const router = express.Router();
 import {   
     getAllProjects,
     getOneProject,
-    createProject
+    createProject,
+    updateProject,
+    deleteProject
 } from "../controllers/ProjectController.js";
 
 import {   
@@ -14,7 +16,7 @@ import {
     Login,
     register,
     createProjects,
-    editProject
+    logout
 } from "../controllers/PaginasController.js";
 
 import {   
@@ -25,16 +27,18 @@ import {
 
 // PAGES ROUTES
 router.get('/', paginaInicio);
+router.get('/logout', logout);
 router.get('/login', Login);
 router.get('/register', register);
 router.get('/dashboard/createProjects', createProjects);
-router.get('/dashboard/editProject/:id', editProject);
+router.get('/dashboard/editProject/:id', getOneProject);
 router.get('/dashboard', getAllProjects);
 router.get('/*',error404);
 
 // PROJECTS ROUTES
-router.get('/dashboard/projects/:id', getOneProject);
-router.post('/dashboard/createProject/:id',createProject);
+router.post('/dashboard/createProject/:id', createProject);
+router.post('/dashboard/editProject/:id', updateProject);
+router.post('/dashboard/deleteProject/:id', deleteProject);
 
 // USER ROUTES
 router.post('/register', create);

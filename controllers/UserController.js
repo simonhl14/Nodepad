@@ -28,6 +28,8 @@ export const login = async (req = request, res = response) => {
         return
     }
     res.cookie('ID', isLogin.id)
+    res.cookie('EMAIL', isLogin.email)
+
 
     res.redirect('/dashboard')
 

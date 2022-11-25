@@ -10,6 +10,7 @@ export const getAllProjects = async (req = request, res = response) => {
 
         const Project = await getAll(Number(id));
         res.render("dashboard", {
+            email: req.cookies.EMAIL,
             Projects: Project,
             id: req.cookies.ID
         });
@@ -24,9 +25,10 @@ export const getOneProject = async (req = request, res = response) => {
     const { id } = req.params;
     try {
         const Project = await getOne(Number(id));
-        res.render("dashboard", {
-            Project,
-            id: req.cookies.ID
+        res.render("editProject", {
+            Project: Project,
+            id: req.cookies.ID,
+            email: req.cookies.EMAIL
         });
 
     } catch (e) {
@@ -43,8 +45,9 @@ export const createProject = async (req = request, res = response) => {
     try {
         const createProject = await create(name, url, description, Number(select), Number(id))
 
-        res.render('newProjects', {
-            id: req.cookies.ID
+        res.render('dashboard', {
+            id: req.cookies.ID,
+            email: req.cookies.EMAIL
         });
 
         return
@@ -58,14 +61,18 @@ export const updateProject = async (req = request, res = response) => {
 
     const id = req.cookies.ID;
 
+    const { name, url, select, description} = req.body
 
-    const { data } = req.body;
-
+    console.log( name );
     try {
 
-        const updateProject = await update(Number(id), data)
+        const updateProject = await update(name, url, description, Number(select), Number(id))
 
-        res.redirect('/dashboard');
+        res.render('dashboard', {
+            id: req.cookies.ID,
+            email: req.cookies.EMAIL
+        });
+
 
     } catch (error) {
         console.log(error);
@@ -76,8 +83,7 @@ export const updateProject = async (req = request, res = response) => {
 
 export const deleteProject = async (req = request, res = response) => {
 
-    const id = req.cookies.ID;
-
+    const { id } = req.params;
 
     try {
 
@@ -86,8 +92,6 @@ export const deleteProject = async (req = request, res = response) => {
         res.redirect('/dashboard');
 
     } catch (error) {
-
+        console.log(error);
     }
-
-
 }
