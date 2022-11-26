@@ -45,33 +45,26 @@ export const createProject = async (req = request, res = response) => {
     try {
         const createProject = await create(name, url, description, Number(select), Number(id))
 
-        res.render('dashboard', {
-            id: req.cookies.ID,
-            email: req.cookies.EMAIL
-        });
+        res.redirect('/dashboard');
 
         return
 
     } catch (error) {
-
+        console.log(error);
     }
 }
 
 export const updateProject = async (req = request, res = response) => {
 
-    const id = req.cookies.ID;
-
     const { name, url, select, description} = req.body
+    
+    const { id } = req.params;
 
-    console.log( name );
     try {
 
-        const updateProject = await update(name, url, description, Number(select), Number(id))
+        const updateProject = await update( Number(id), name, url, description, Number(select))
 
-        res.render('dashboard', {
-            id: req.cookies.ID,
-            email: req.cookies.EMAIL
-        });
+        res.redirect('/dashboard');
 
 
     } catch (error) {

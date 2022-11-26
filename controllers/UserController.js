@@ -10,7 +10,7 @@ export const create = async (req = request, res = response) => {
     const IsCreated = await createUser(name, email, password);
 
     if (!IsCreated) {
-        res.render('register', { msg: "error creando el usuario" })
+        res.render('register', { msg: "error creando el usuario", email: req.cookies.EMAIL })
         return
     }
 
@@ -24,7 +24,7 @@ export const login = async (req = request, res = response) => {
     const isLogin = await userLogin(email, password);
 
     if (!isLogin) {
-        res.render('login', { msg: "error iniciando sesion" })
+        res.render('login', { msg: "error iniciando sesion", email: req.cookies.EMAIL})
         return
     }
     res.cookie('ID', isLogin.id)

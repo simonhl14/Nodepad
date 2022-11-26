@@ -1,47 +1,47 @@
 <!--LOGIN-->
-<div class="flex items-center p-10 mt-8 mb-8 inline-grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 w-full">
+<div class="flex items-center p-10 mt-8 mb-8 inline-grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 md:px-20 lg:px-20 xl:px-36 gap-4 w-full">
 
-<form action="/login" method="POST" id="form_login">
-  <!-- Email input -->
-  <div class="mb-6">
-    <input
-      type="email"
-      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-      id="email"
-      name="email"
-      placeholder="Email address"
-      required
-    />
-  </div>
+  <form action="/login" method="POST" id="form_login">
+    <!-- Email input -->
+    <div class="mb-6">
+      <input
+        type="email"
+        class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        id="email"
+        name="email"
+        placeholder="Email address"
+        required
+      />
+    </div>
 
-  <!-- Password input -->
-  <div class="mb-6">
-    <input
-      type="password"
-      class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-      id="password"
-      name="password"
-      placeholder="Password"
-      required
-    />
-  </div>
+    <!-- Password input -->
+    <div class="mb-6">
+      <input
+        type="password"
+        class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        id="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+    </div>
 
-  <div class="text-center ">
-    <button
-      type="submit"
-      class="inline-block w-full px-7 py-3 bg-sky-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-    >
-      Ingresar
-    </button>
-    <p class="text-sm font-semibold mt-2 pt-1 mb-0">
-      No tienes una cuenta?
-      <a
-        href="/register"
-        class="text-sky-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
-        >Registrate</a
+    <div class="text-center ">
+      <button
+        type="submit"
+        class="inline-block w-full px-7 py-3 bg-sky-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
       >
-    </p>
-  </div>
-</form>
-<div>IMAGEN</div>
+        Ingresar
+      </button>
+      <p class="text-sm font-semibold mt-2 pt-1 mb-0">
+        No tienes una cuenta?
+        <a
+          href="/register"
+          class="text-sky-600 hover:text-sky-700 focus:text-sky-700 transition duration-200 ease-in-out"
+          >Registrate</a
+        >
+      </p>
+    </div>
+  </form>
+<img class=" w-full h-64" src="https://newmibridges.michigan.gov/resource/1657970840000/ISD_Icons/landing-page/group-3.svg" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
 </div>

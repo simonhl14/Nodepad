@@ -2,7 +2,7 @@ import { response, request } from 'express'
 
 const paginaInicio = async (req, res) => {
   try {
-    res.clearCookie('EMAIL');
+    res.cookie('EMAIL', '')
     res.render("inicio", {email: req.cookies.EMAIL});
   } catch (error) {
     console.log('ERRROR INICIO \n'+ error);
@@ -11,7 +11,7 @@ const paginaInicio = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-    res.clearCookie('EMAIL');
+    res.cookie('EMAIL', '')
     res.redirect('/');
   } catch (error) {
     console.log('ERRROR INICIO \n'+ error);
@@ -32,6 +32,7 @@ const dashboard = async(req, res) => {
 
 const Login = async(req, res) => {
   try {
+    res.cookie('EMAIL', '')
     res.render("login", {email: req.cookies.EMAIL});
   } catch (error) {
     console.log('ERRROR LOGIN \n'+ error);
@@ -40,6 +41,7 @@ const Login = async(req, res) => {
 
 const register = async(req, res) => {
   try {
+    res.cookie('EMAIL', '')
     res.render("register", {email: req.cookies.EMAIL});
   } catch (error) {
     console.log('ERRROR REGISTER \n'+ error);
